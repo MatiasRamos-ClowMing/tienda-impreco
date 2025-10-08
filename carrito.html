@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras - Impreco</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/carrito.css">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/img/logo-impreco-impresion-&-diseño.webp" alt="Logo Impreco" width="135" height="55">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#productos">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#contacto">Contacto</a>
+                    </li>
+                </ul>
+                <form class="d-flex me-3" role="search">
+                    <div class="input-group">
+                        <input type="search" class="form-control" placeholder="Buscar productos..." aria-label="Buscar">
+                        <button class="btn btn-outline-light" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
+                <div class="d-flex">
+                    <a href="login.html" class="btn btn-outline-light me-2">
+                        <i class="bi bi-person"></i> Iniciar Sesión
+                    </a>
+                    <a href="carrito.html" class="btn btn-primary">
+                        <i class="bi bi-cart"></i> Carrito <span class="badge bg-danger" id="cartBadge">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido del Carrito -->
+    <section class="carrito-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="mb-4">
+                        <i class="bi bi-cart3 me-2"></i>Mi Carrito de Compras
+                    </h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Lista de productos en el carrito -->
+                <div class="col-lg-8">
+                    <div class="carrito-items">
+                        <div id="carritoVacio" class="carrito-vacio text-center py-5" style="display: none;">
+                            <i class="bi bi-cart-x" style="font-size: 5rem; color: var(--violeta-pastel);"></i>
+                            <h3 class="mt-4">Tu carrito está vacío</h3>
+                            <p class="text-muted">Agrega productos para comenzar tu compra</p>
+                            <a href="index.html#productos" class="btn btn-primary btn-lg mt-3">
+                                <i class="bi bi-shop me-2"></i>Ir a la tienda
+                            </a>
+                        </div>
+
+                        <div id="carritoConProductos">
+                            <!-- Los productos del carrito se cargarán aquí dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resumen del pedido -->
+                <div class="col-lg-4">
+                    <div class="resumen-pedido">
+                        <h4 class="mb-4">
+                            <i class="bi bi-receipt me-2"></i>Resumen del Pedido
+                        </h4>
+                        
+                        <div class="resumen-item">
+                            <span>Subtotal (<span id="cantidadItems">0</span> items)</span>
+                            <span id="subtotal">$0.00</span>
+                        </div>
+                        
+                        <div class="resumen-item">
+                            <span>Envío</span>
+                            <span id="envio">$0.00</span>
+                        </div>
+                        
+                        <div class="resumen-item">
+                            <span class="text-muted small">Envío gratis en compras superiores a $50</span>
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="resumen-total">
+                            <span><strong>Total</strong></span>
+                            <span><strong id="total">$0.00</strong></span>
+                        </div>
+                        
+                        <button class="btn btn-primary w-100 btn-lg mt-4" id="btnProcesarCompra">
+                            <i class="bi bi-credit-card me-2"></i>Procesar Compra
+                        </button>
+                        
+                        <button class="btn btn-outline-danger w-100 mt-3" id="btnVaciarCarrito">
+                            <i class="bi bi-trash me-2"></i>Vaciar Carrito
+                        </button>
+                        
+                        <div class="mt-4 text-center">
+                            <a href="index.html#productos" class="text-decoration-none">
+                                <i class="bi bi-arrow-left me-2"></i>Continuar comprando
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Métodos de pago aceptados -->
+                    <div class="metodos-pago mt-4">
+                        <h6 class="text-muted mb-3">Métodos de pago aceptados</h6>
+                        <div class="d-flex justify-content-around">
+                            <i class="bi bi-credit-card-2-front" style="font-size: 2rem; color: var(--violeta-pastel);"></i>
+                            <i class="bi bi-paypal" style="font-size: 2rem; color: var(--violeta-pastel);"></i>
+                            <i class="bi bi-wallet2" style="font-size: 2rem; color: var(--violeta-pastel);"></i>
+                        </div>
+                    </div>
+
+                    <!-- Garantías -->
+                    <div class="garantias mt-4">
+                        <div class="garantia-item">
+                            <i class="bi bi-shield-check text-success"></i>
+                            <span>Compra 100% segura</span>
+                        </div>
+                        <div class="garantia-item">
+                            <i class="bi bi-truck text-primary"></i>
+                            <span>Envío rápido y confiable</span>
+                        </div>
+                        <div class="garantia-item">
+                            <i class="bi bi-arrow-clockwise text-info"></i>
+                            <span>Devoluciones fáciles</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Confirmación de Compra -->
+    <div class="modal fade" id="confirmacionModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-check-circle text-success me-2"></i>¡Compra Exitosa!
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center py-4">
+                    <i class="bi bi-bag-check-fill" style="font-size: 4rem; color: var(--naranja-pastel);"></i>
+                    <h4 class="mt-3">¡Gracias por tu compra!</h4>
+                    <p class="text-muted">Tu pedido ha sido procesado exitosamente.</p>
+                    <p><strong>Número de pedido: <span id="numeroPedido">#0000</span></strong></p>
+                    <p class="small text-muted">Recibirás un correo de confirmación con los detalles de tu pedido.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="index.html" class="btn btn-primary w-100">
+                        <i class="bi bi-house me-2"></i>Volver al inicio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="bg-dark text-white py-3 mt-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Métodos de pago - Izquierda -->
+                <div class="col-md-8 mb-3 mb-md-0">
+                    <div class="payment-methods justify-content-start">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" class="payment-icon">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" class="payment-icon">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" alt="American Express" class="payment-icon">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/PayPal_logo.svg" alt="PayPal" class="payment-icon">
+                        <img src="https://logodownload.org/wp-content/uploads/2016/10/naranja-logo.png" alt="Naranja" class="payment-icon">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/MercadoPago_Logo.png" alt="Mercado Pago" class="payment-icon">
+                    </div>
+                </div>
+                
+                <!-- Información Fiscal AFIP - Derecha -->
+                <div class="col-md-4 text-center text-md-end">
+                    <a href="http://qr.afip.gob.ar/?qr=XXXXXXXXXXXXXXX" target="_blank" rel="noopener noreferrer">
+                        <img src="https://www.afip.gob.ar/images/f960/DATAWEB.jpg" alt="Data Fiscal AFIP" class="afip-logo">
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center mt-3">
+                <p class="mb-0">&copy; 2025 Impreco. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/5491234567890?text=Hola,%20tengo%20una%20consulta%20sobre%20mi%20carrito" 
+       class="whatsapp-float" 
+       target="_blank"
+       rel="noopener noreferrer"
+       title="Chatea con nosotros">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <!-- Bootstrap JS y dependencias -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <!-- Script personalizado -->
+    <script src="js/carrito.js"></script>
+</body>
+</html>
